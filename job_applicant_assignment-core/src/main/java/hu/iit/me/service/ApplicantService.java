@@ -6,7 +6,7 @@ import java.util.Collection;
 
 public interface ApplicantService {
 
-    Collection<Applicant> getApplicants();
+    Iterable<Applicant> getApplicants();
 
     Collection<Applicant> getApplicantByQualification(String qualification);
 

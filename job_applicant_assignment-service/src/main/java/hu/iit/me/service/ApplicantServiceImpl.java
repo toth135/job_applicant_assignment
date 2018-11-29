@@ -1,22 +1,26 @@
 package hu.iit.me.service;
 
+import hu.iit.me.dao.ApplicantsRepository;
 import hu.iit.me.model.Applicant;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
-@Component
+@Service
 public class ApplicantServiceImpl implements ApplicantService {
 
     private Collection<Applicant> applicants;
 
+    @Autowired
+    private ApplicantsRepository applicantsRepository;
+
     @PostConstruct
     public final void initialization() {
-        applicants = new ArrayList<>();
-        applicants.add(new Applicant(
-             "001",
+        applicantsRepository.save(new Applicant(
+                UUID.randomUUID(),
              "Jancsi",
              "Kiss",
              "1995.06.12.",
@@ -24,9 +28,10 @@ public class ApplicantServiceImpl implements ApplicantService {
              "Felsőfokú",
              "06201234567",
              "Ózd"
+
         ));
-        applicants.add(new Applicant(
-                "002",
+        applicantsRepository.save(new Applicant(
+                UUID.randomUUID(),
                 "Béla",
                 "Nagy",
                 "1990.05.11.",
@@ -35,8 +40,8 @@ public class ApplicantServiceImpl implements ApplicantService {
                 "06202345678",
                 "Borsodnádasd"
         ));
-        applicants.add(new Applicant(
-                "003",
+        applicantsRepository.save(new Applicant(
+                UUID.randomUUID(),
                 "Julcsi",
                 "Fekete",
                 "1992.01.01.",
@@ -48,26 +53,16 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
 
     @Override
-    public Collection<Applicant> getApplicants() { return applicants; }
+    public Collection<Applicant> getApplicants() { return applicantsRepository.findAll(); }
 
     @Override
     public Collection<Applicant> getApplicantByQualification(String qualification) {
-        Collection<Applicant> result = new ArrayList<>();
-        for (Applicant applicant : applicants) {
-            if (applicant.getQualification().equals(qualification))
-                result.add(applicant);
-        }
-        return result;
+        return applicantsRepository.findByQualification(qualification);
     }
 
     @Override
     public Collection<Applicant> getApplicantByFirstName(String firstName) {
-        Collection<Applicant> result = new ArrayList<>();
-        for (Applicant applicant : applicants) {
-            if (applicant.getFirstName().equals(firstName))
-                result.add(applicant);
-        }
-        return result;
+        return applicantsRepository.findByFirstName(firstName);
     }
 
 }

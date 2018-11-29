@@ -16,7 +16,9 @@ public class ApplicantController {
     ApplicantService applicantService;
 
     @GetMapping(value="/applicants/all")
-    public Collection<Applicant> getApplicants() { return applicantService.getApplicants(); }
+    public Collection<Applicant> getApplicants() {
+        return (Collection<Applicant>) applicantService.getApplicants();
+    }
 
     @GetMapping("/applicants/byqualification/{qualification}")
     public Collection<Applicant> getApplicantsByQualification(@PathVariable String qualification) {

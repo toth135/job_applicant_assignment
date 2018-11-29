@@ -1,8 +1,17 @@
 package hu.iit.me.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.UUID;
+
+@Entity
 public class Applicant {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String firstName;
     private String lastName;
     private String birthDate;
@@ -15,7 +24,7 @@ public class Applicant {
 
     }
 
-    public Applicant(String id, String firstName, String lastName, String birthDate,
+    public Applicant(UUID id, String firstName, String lastName, String birthDate,
                      String gender, String qualification, String phoneNumber, String city) {
         this.id = id;
         this.firstName = firstName;
@@ -27,11 +36,11 @@ public class Applicant {
         this.city = city;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
