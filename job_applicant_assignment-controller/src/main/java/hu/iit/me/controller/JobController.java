@@ -25,4 +25,9 @@ public class JobController {
         return jobService.getJobByCategory(category);
     }
 
+    @GetMapping("/jobs/bypayment/{payment}")
+    public Collection<Job> getJobsByPayment(@PathVariable Integer payment) {
+        return jobService.getJobByPayment(payment);
+    }
+
 }

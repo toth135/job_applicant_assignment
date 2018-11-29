@@ -1,22 +1,31 @@
 package hu.iit.me.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.UUID;
+
+@Entity
 public class Job {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String category;
     private String name;
     private String description;
     private String company;
-    private String payment;
-    private String requiredQualification;
+    private Integer payment;
+    private Qualification requiredQualification;
     private String experience;
 
     public Job() {
 
     }
 
-    public Job(String id, String category, String name, String description, String company,
-               String payment, String requiredQualification, String experience) {
+    public Job(UUID id, String category, String name, String description, String company,
+               Integer payment, Qualification requiredQualification, String experience) {
         this.id = id;
         this.category = category;
         this.name = name;
@@ -27,11 +36,11 @@ public class Job {
         this.experience = experience;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -67,19 +76,19 @@ public class Job {
         this.company = company;
     }
 
-    public String getPayment() {
+    public Integer getPayment() {
         return payment;
     }
 
-    public void setPayment(String payment) {
+    public void setPayment(Integer payment) {
         this.payment = payment;
     }
 
-    public String getRequiredQualification() {
+    public Qualification getRequiredQualification() {
         return requiredQualification;
     }
 
-    public void setRequiredQualification(String requiredQualification) {
+    public void setRequiredQualification(Qualification requiredQualification) {
         this.requiredQualification = requiredQualification;
     }
 

@@ -9,4 +9,6 @@ public interface JobService {
     Collection<Job> getJobs();
 
     Collection<Job> getJobByCategory(String category);
+
+    Collection<Job> getJobByPayment(Integer payment);
 }

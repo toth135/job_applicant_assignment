@@ -8,4 +8,5 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @ComponentScan({"hu.iit.me.controller", "hu.iit.me.dao", "hu.iit.me.model", "hu.iit.me.service"})
 public class JobApplicantAssignmentApplicationContext {
+
 }

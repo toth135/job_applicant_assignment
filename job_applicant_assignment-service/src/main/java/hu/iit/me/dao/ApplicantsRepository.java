@@ -1,8 +1,10 @@
 package hu.iit.me.dao;
 
 import hu.iit.me.model.Applicant;
+import hu.iit.me.model.Qualification;
 
 import java.util.Collection;
+import java.util.Date;
 
 public interface ApplicantsRepository {
 
@@ -10,8 +12,10 @@ public interface ApplicantsRepository {
 
     Collection<Applicant> findAll();
 
-    Collection<Applicant> findByQualification(String qualification);
+    Collection<Applicant> findByQualification(Qualification qualification);
 
     Collection<Applicant> findByFirstName(String firstName);
+
+    Collection<Applicant> findByBirthDate(Date birthDate);
 
 }
