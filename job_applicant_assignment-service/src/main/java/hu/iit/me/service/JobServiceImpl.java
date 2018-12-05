@@ -65,4 +65,9 @@ public class JobServiceImpl implements JobService {
         return jobsRepository.findByPayment(payment);
     }
 
+    @Override
+    public Collection<Job> getJobByRequiredQualification(Qualification requiredQualification) {
+        return jobsRepository.findByRequiredQualification(requiredQualification);
+    }
+
 }

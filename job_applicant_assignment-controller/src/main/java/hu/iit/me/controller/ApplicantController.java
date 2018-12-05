@@ -1,16 +1,19 @@
 package hu.iit.me.controller;
 
+import hu.iit.me.dto.ApplicantDTO;
 import hu.iit.me.model.Applicant;
 import hu.iit.me.model.Qualification;
 import hu.iit.me.service.ApplicantService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class ApplicantController {
@@ -18,24 +21,36 @@ public class ApplicantController {
     @Autowired
     ApplicantService applicantService;
 
+    @Autowired
+    ModelMapper modelMapper;
+
     @GetMapping(value="/applicants/all")
-    public Collection<Applicant> getApplicants() {
-        return applicantService.getApplicants();
+    public List<ApplicantDTO> getApplicants() {
+        return applicantService.getApplicants().stream()
+                .map((Applicant applicant) -> modelMapper.map(applicant, ApplicantDTO.class))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/applicants/byqualification/{qualification}")
-    public Collection<Applicant> getApplicantsByQualification(@PathVariable Qualification qualification) {
-        return applicantService.getApplicantByQualification(qualification);
+    public List<ApplicantDTO> getApplicantsByQualification(@PathVariable Qualification qualification) {
+        return applicantService.getApplicantByQualification(qualification).stream()
+                .map((Applicant applicant) -> modelMapper.map(applicant, ApplicantDTO.class))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/applicants/byfirstname/{firstName}")
-    public Collection<Applicant> getApplicantsByFirstName(@PathVariable String firstName) {
-        return applicantService.getApplicantByFirstName(firstName);
+    public List<ApplicantDTO> getApplicantsByFirstName(@PathVariable String firstName) {
+        return applicantService.getApplicantByFirstName(firstName).stream()
+                .map((Applicant applicant) -> modelMapper.map(applicant, ApplicantDTO.class))
+                .collect(Collectors.toList());
+
     }
 
     @GetMapping("/applicants/bybirthdate/{birthDate}")
-    public Collection<Applicant> getApplicantsByBirthDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate) {
-        return applicantService.getApplicantByBirthDate(birthDate);
+    public List<ApplicantDTO> getApplicantsByBirthDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate) {
+        return applicantService.getApplicantByBirthDate(birthDate).stream()
+                .map((Applicant applicant) -> modelMapper.map(applicant, ApplicantDTO.class))
+                .collect(Collectors.toList());
     }
 
 }

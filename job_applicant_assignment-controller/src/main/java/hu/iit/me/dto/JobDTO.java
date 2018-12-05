@@ -1,33 +1,22 @@
-package hu.iit.me.model;
+package hu.iit.me.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Objects;
-import java.util.UUID;
 
-@Entity
-public class Job {
+public class JobDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
     private String category;
     private String name;
     private String description;
     private String company;
-    private Integer payment;
-    private Qualification requiredQualification;
+    private String payment;
+    private String requiredQualification;
     private String experience;
 
-    public Job() {
-
+    public JobDTO(){
     }
 
-    public Job(UUID id, String category, String name, String description, String company,
-               Integer payment, Qualification requiredQualification, String experience) {
-        this.id = id;
+    public JobDTO(String category, String name, String description, String company, String payment,
+                  String requiredQualification, String experience) {
         this.category = category;
         this.name = name;
         this.description = description;
@@ -35,14 +24,6 @@ public class Job {
         this.payment = payment;
         this.requiredQualification = requiredQualification;
         this.experience = experience;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getCategory() {
@@ -77,19 +58,19 @@ public class Job {
         this.company = company;
     }
 
-    public Integer getPayment() {
+    public String getPayment() {
         return payment;
     }
 
-    public void setPayment(Integer payment) {
+    public void setPayment(String payment) {
         this.payment = payment;
     }
 
-    public Qualification getRequiredQualification() {
+    public String getRequiredQualification() {
         return requiredQualification;
     }
 
-    public void setRequiredQualification(Qualification requiredQualification) {
+    public void setRequiredQualification(String requiredQualification) {
         this.requiredQualification = requiredQualification;
     }
 
@@ -101,36 +82,35 @@ public class Job {
         this.experience = experience;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Job job = (Job) o;
-        return Objects.equals(id, job.id) &&
-                Objects.equals(category, job.category) &&
-                Objects.equals(name, job.name) &&
-                Objects.equals(description, job.description) &&
-                Objects.equals(company, job.company) &&
-                Objects.equals(payment, job.payment) &&
-                requiredQualification == job.requiredQualification &&
-                Objects.equals(experience, job.experience);
+        JobDTO jobDTO = (JobDTO) o;
+        return Objects.equals(category, jobDTO.category) &&
+                Objects.equals(name, jobDTO.name) &&
+                Objects.equals(description, jobDTO.description) &&
+                Objects.equals(company, jobDTO.company) &&
+                Objects.equals(payment, jobDTO.payment) &&
+                Objects.equals(requiredQualification, jobDTO.requiredQualification) &&
+                Objects.equals(experience, jobDTO.experience);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, category, name, description, company, payment, requiredQualification, experience);
+        return Objects.hash(category, name, description, company, payment, requiredQualification, experience);
     }
 
     @Override
     public String toString() {
-        return "Job{" +
-                "id='" + id + '\'' +
-                ", category='" + category + '\'' +
+        return "JobDTO{" +
+                "category='" + category + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", company='" + company + '\'' +
                 ", payment='" + payment + '\'' +
-                ", requiredQualification='" + requiredQualification + '\'' +
+                ", requieredQualification='" + requiredQualification + '\'' +
                 ", experience='" + experience + '\'' +
                 '}';
     }

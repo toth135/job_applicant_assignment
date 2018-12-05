@@ -1,35 +1,23 @@
-package hu.iit.me.model;
+package hu.iit.me.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
-import java.util.UUID;
+public class ApplicantDTO {
 
-@Entity
-public class Applicant {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
     private String firstName;
     private String lastName;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date birthDate;
-    private Gender gender;
-    private Qualification qualification;
+    private String birthDate;
+    private String gender;
+    private String qualification;
     private String phoneNumber;
     private String city;
-    public Applicant() {
+
+    public ApplicantDTO(){
 
     }
 
-    public Applicant(UUID id, String firstName, String lastName, Date birthDate,
-                     Gender gender, Qualification qualification, String phoneNumber, String city) {
-        this.id = id;
+    public ApplicantDTO(String firstName, String lastName, String birthDate, String gender,
+                        String qualification, String phoneNumber, String city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -37,14 +25,6 @@ public class Applicant {
         this.qualification = qualification;
         this.phoneNumber = phoneNumber;
         this.city = city;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -63,27 +43,27 @@ public class Applicant {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public Qualification getQualification() {
+    public String getQualification() {
         return qualification;
     }
 
-    public void setQualification(Qualification qualification) {
+    public void setQualification(String qualification) {
         this.qualification = qualification;
     }
 
@@ -104,10 +84,28 @@ public class Applicant {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ApplicantDTO that = (ApplicantDTO) o;
+        return Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(birthDate, that.birthDate) &&
+                Objects.equals(gender, that.gender) &&
+                Objects.equals(qualification, that.qualification) &&
+                Objects.equals(phoneNumber, that.phoneNumber) &&
+                Objects.equals(city, that.city);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, birthDate, gender, qualification, phoneNumber, city);
+    }
+
+    @Override
     public String toString() {
-        return "Applicant{" +
-                "id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
+        return "ApplicantDTO{" +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDate='" + birthDate + '\'' +
                 ", gender='" + gender + '\'' +
