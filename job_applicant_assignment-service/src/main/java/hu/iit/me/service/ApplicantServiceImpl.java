@@ -12,7 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.UUID;
 
 @Service
 public class ApplicantServiceImpl implements ApplicantService {
@@ -25,7 +24,6 @@ public class ApplicantServiceImpl implements ApplicantService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         applicantsRepository.save(new Applicant(
-                UUID.randomUUID(),
              "Jancsi",
              "Kiss",
              sdf.parse("1997-01-29"),
@@ -36,7 +34,6 @@ public class ApplicantServiceImpl implements ApplicantService {
 
         ));
         applicantsRepository.save(new Applicant(
-                UUID.randomUUID(),
                 "Béla",
                 "Nagy",
                 sdf.parse("1992-03-21"),
@@ -46,7 +43,6 @@ public class ApplicantServiceImpl implements ApplicantService {
                 "Borsodnádasd"
         ));
         applicantsRepository.save(new Applicant(
-                UUID.randomUUID(),
                 "Julcsi",
                 "Fekete",
                 sdf.parse("1990-07-15"),

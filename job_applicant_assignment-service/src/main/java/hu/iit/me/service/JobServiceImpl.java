@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
-import java.util.UUID;
 
 @Service
 public class JobServiceImpl implements JobService {
@@ -19,7 +18,6 @@ public class JobServiceImpl implements JobService {
     @PostConstruct
     public final void initialization() {
         jobsRepository.save(new Job(
-                UUID.randomUUID(),
                 "IT",
                 "Számítástechnikai szakembör",
                 "Szakembört keresünk számítógépek és laptopok szereléséhez",
@@ -29,7 +27,6 @@ public class JobServiceImpl implements JobService {
                 "Nem feltétel"
         ));
         jobsRepository.save(new Job(
-                UUID.randomUUID(),
                 "Oktatás",
                 "Tornatanár",
                 "Tornatanárt keresünk általános iskolába",
@@ -39,7 +36,6 @@ public class JobServiceImpl implements JobService {
                 "Nem feltétel"
         ));
         jobsRepository.save(new Job(
-                UUID.randomUUID(),
                 "Karbantartás",
                 "Karbantartó",
                 "Karbantartót keresünk fröccsentőüzemünkbe",
