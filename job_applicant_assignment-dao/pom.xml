@@ -22,13 +22,6 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-                <version>4.11</version>
-        <scope>test</scope>
-        </dependency> -->
         <dependency>
             <groupId>hu.iit.me</groupId>
             <artifactId>job_applicant_assignment-service</artifactId>
