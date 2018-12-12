@@ -27,9 +27,8 @@ public class Applicant {
 
     }
 
-    public Applicant(UUID id, String firstName, String lastName, Date birthDate,
+    public Applicant(String firstName, String lastName, Date birthDate,
                      Gender gender, Qualification qualification, String phoneNumber, String city) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -38,6 +37,8 @@ public class Applicant {
         this.phoneNumber = phoneNumber;
         this.city = city;
     }
+
+
 
     public UUID getId() {
         return id;

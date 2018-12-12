@@ -25,7 +25,7 @@ public class Job {
 
     }
 
-    public Job(UUID id, String category, String name, String description, String company,
+    public Job(String category, String name, String description, String company,
                Integer payment, Qualification requiredQualification, String experience) {
         this.id = id;
         this.category = category;
